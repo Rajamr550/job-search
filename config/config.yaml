@@ -1,0 +1,57 @@
+kill_switch: false
+cv_path: resume/cv_profile.md
+search:
+  keywords:
+  - Java
+  - Spring Boot
+  - Microservices
+  - React
+  - Angular
+  - AWS
+  - Docker
+  - Kubernetes
+  location: France
+  remote_preference: remote
+matching:
+  threshold: 65
+  location_weights:
+    remote: 1.0
+    hybrid: 0.85
+    onsite: 0.7
+  dealbreakers:
+  - EU citizenship required
+  - no visa sponsorship
+  - must be EU citizen
+  - citoyens européens uniquement
+portals:
+  demo:
+    enabled: false
+    daily_cap: 10
+    hourly_cap: 10
+  france_travail:
+    enabled: true
+    daily_cap: 15
+    hourly_cap: 5
+  linkedin:
+    enabled: false
+    daily_cap: 10
+    hourly_cap: 3
+  indeed:
+    enabled: false
+    daily_cap: 10
+    hourly_cap: 3
+  welcome_jungle:
+    enabled: false
+    daily_cap: 8
+    hourly_cap: 3
+  apec:
+    enabled: false
+    daily_cap: 8
+    hourly_cap: 3
+pacing:
+  min_delay_seconds: 3
+  max_delay_seconds: 12
+  daytime_only: true
+  timezone: Europe/Paris
+  day_start_hour: 9
+  day_end_hour: 18

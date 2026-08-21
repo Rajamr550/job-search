@@ -1,0 +1,31 @@
+## Secrets & local env
+.env
+.env.local
+
+## Playwright session state (kept in GitHub Actions cache, not git history)
+.auth/*.json
+!.auth/.gitkeep
+
+## Logs (verbose debug logs are local-only; logs/run_history.jsonl IS committed
+## by the workflow as a lightweight audit trail, see run_once.py)
+logs/*.log
+logs/debug/
+
+## Python
+__pycache__/
+*.pyc
+.venv/
+venv/
+*.egg-info/
+
+## Playwright browsers cache (installed per-run, never committed)
+.playwright-browsers/
+
+## OS / editor cruft
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+## Generated static report build artifacts (rebuilt every run by CI)
+docs/_site/

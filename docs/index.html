@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>Job Agent Status</title>
+  <style>
+    :root { --bg:#0f1419; --card:#1a2332; --text:#e7ecf3; --muted:#8b9bb4; --accent:#3d9cf0; }
+    body { font-family: "Segoe UI", system-ui, sans-serif; background: var(--bg); color: var(--text);
+           margin: 0; padding: 2rem; line-height: 1.45; }
+    h1 { font-size: 1.5rem; margin: 0 0 .25rem; }
+    .sub { color: var(--muted); margin-bottom: 1.5rem; font-size: .9rem; }
+    .stats { display: flex; flex-wrap: wrap; gap: .75rem; margin-bottom: 2rem; }
+    .stat { background: var(--card); padding: .75rem 1rem; border-radius: 8px; min-width: 5rem; }
+    .stat .n { font-size: 1.4rem; font-weight: 700; }
+    .stat .l { color: var(--muted); font-size: .75rem; text-transform: uppercase; }
+    table { width: 100%; border-collapse: collapse; background: var(--card); border-radius: 8px; overflow: hidden; }
+    th, td { text-align: left; padding: .6rem .75rem; border-bottom: 1px solid #243044; font-size: .9rem; }
+    th { color: var(--muted); font-weight: 600; }
+    a { color: var(--accent); }
+    .badge { background: #243044; padding: .15rem .45rem; border-radius: 4px; font-size: .8rem; }
+    h2 { font-size: 1.1rem; margin: 2rem 0 .75rem; }
+  </style>
+</head>
+<body>
+  <h1>Job Agent Status</h1>
+  <p class="sub">Read-only report · generated 2026-08-20 17:44 UTC</p>
+  <div class="stats"><div class="stat"><div class="n">1</div><div class="l">applied</div></div><div class="stat"><div class="n">0</div><div class="l">manual</div></div><div class="stat"><div class="n">2</div><div class="l">skipped</div></div><div class="stat"><div class="n">0</div><div class="l">interview</div></div></div>
+  <h2>Recent applications</h2>
+  <table>
+    <thead><tr><th>Updated</th><th>Portal</th><th>Company</th><th>Title</th><th>Fit</th><th>Status</th></tr></thead>
+    <tbody><tr><td>2026-08-20 17:44:41</td><td>demo</td><td>Acme Cloud FR</td><td><a href='https://example.com/jobs/demo-1' target='_blank' rel='noopener'>Senior Java / Spring Boot Engineer</a></td><td>93.2</td><td><span class='badge'>applied</span></td></tr>
+<tr><td>2026-08-20 17:44:41</td><td>demo</td><td>Startup Remote FR</td><td><a href='https://example.com/jobs/demo-2' target='_blank' rel='noopener'>Fullstack React / Java Developer</a></td><td>0.0</td><td><span class='badge'>skipped</span></td></tr>
+<tr><td>2026-08-20 17:44:41</td><td>demo</td><td>Legacy Corp</td><td><a href='https://example.com/jobs/demo-3' target='_blank' rel='noopener'>Junior PHP Developer</a></td><td>17.5</td><td><span class='badge'>skipped</span></td></tr></tbody>
+  </table>
+  <h2>Portal health</h2>
+  <table>
+    <thead><tr><th>Portal</th><th>Auth</th><th>Last error</th><th>Updated</th></tr></thead>
+    <tbody><tr><td>demo</td><td>ok</td><td></td><td>2026-08-20 17:44:37</td></tr></tbody>
+  </table>
+</body>
+</html>

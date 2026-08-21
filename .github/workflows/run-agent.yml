@@ -1,0 +1,64 @@
+name: Run job agent
+
+on:
+  schedule:
+    # CET daytime-ish (UTC): 08:00, 11:00, 14:00 UTC ≈ 09/12/15 Paris (winter)
+    - cron: "0 8,11,14 * * 1-5"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: .
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+          cache-dependency-path: requirements.txt
+
+      - name: Install deps
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+          playwright install --with-deps chromium
+
+      - name: Restore Playwright sessions
+        uses: actions/cache@v4
+        with:
+          path: .auth
+          key: auth-sessions-${{ github.run_id }}
+          restore-keys: |
+            auth-sessions-
+
+      - name: Run agent
+        env:
+          FRANCE_TRAVAIL_CLIENT_ID: ${{ secrets.FRANCE_TRAVAIL_CLIENT_ID }}
+          FRANCE_TRAVAIL_CLIENT_SECRET: ${{ secrets.FRANCE_TRAVAIL_CLIENT_SECRET }}
+        run: python scripts/run_once.py --force
+
+      - name: Generate report
+        run: python scripts/generate_report.py
+
+      - name: Save Playwright sessions
+        if: always()
+        uses: actions/cache/save@v4
+        with:
+          path: .auth
+          key: auth-sessions-${{ github.run_id }}
+
+      - name: Commit tracker + report
+        run: |
+          git config user.name "job-agent-bot"
+          git config user.email "job-agent-bot@users.noreply.github.com"
+          mkdir -p db docs logs
+          git add db/jobs.db docs/index.html logs/run_history.jsonl || true
+          git diff --staged --quiet || git commit -m "chore: update tracker and status report [skip ci]"
+          git push
