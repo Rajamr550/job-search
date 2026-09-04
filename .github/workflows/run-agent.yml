@@ -1,9 +1,10 @@
 name: Run job agent
 
 on:
-  schedule:
-    # CET daytime-ish (UTC): 08:00, 11:00, 14:00 UTC ≈ 09/12/15 Paris (winter)
-    - cron: "0 8,11,14 * * 1-5"
+  # PAUSED: automation halted. Uncomment the schedule below to resume.
+  # schedule:
+  #   # CET daytime-ish (UTC): 08:00, 11:00, 14:00 UTC ≈ 09/12/15 Paris (winter)
+  #   - cron: "0 8,11,14 * * 1-5"
   workflow_dispatch:
 
 permissions:

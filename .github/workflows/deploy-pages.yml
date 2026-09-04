@@ -1,14 +1,15 @@
 name: Deploy status report to GitHub Pages
 
 on:
-  push:
-    branches: [main, master]
-    paths:
-      - "docs/**"
+  # PAUSED: automation halted. Uncomment the triggers below to resume.
+  # push:
+  #   branches: [main, master]
+  #   paths:
+  #     - "docs/**"
   workflow_dispatch:
-  workflow_run:
-    workflows: ["Run job agent"]
-    types: [completed]
+  # workflow_run:
+  #   workflows: ["Run job agent"]
+  #   types: [completed]
 
 permissions:
   contents: read
